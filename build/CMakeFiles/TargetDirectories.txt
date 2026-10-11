@@ -1,0 +1,3 @@
+/home/ebetus/Documents/Carrera/QuintoSemestre/MotorVideojuegos2D/Proyectos/proyecto01-breakout/build/CMakeFiles/proyecto01-breakout.dir
+/home/ebetus/Documents/Carrera/QuintoSemestre/MotorVideojuegos2D/Proyectos/proyecto01-breakout/build/CMakeFiles/edit_cache.dir
+/home/ebetus/Documents/Carrera/QuintoSemestre/MotorVideojuegos2D/Proyectos/proyecto01-breakout/build/CMakeFiles/rebuild_cache.dir
