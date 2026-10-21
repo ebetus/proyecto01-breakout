@@ -12,7 +12,7 @@ BallComponent::BallComponent(float speed) : m_speed(speed) {
 }
 
 BallComponent::BallComponent(float speed , GameObject* player)  : m_speed(speed) , playerObject(player) {
-  float exit_angle = 3.14f/4.0f;
+  float exit_angle = 3.14f/4.0f; // 45 grados de salida
   velocity.x = speed * std::sin(exit_angle);
   velocity.y = -speed * std::cos(exit_angle);
 }
@@ -36,9 +36,12 @@ void BallComponent::FixedUpdate(float dt){
     velocity.y = -std::abs(velocity.y);
   }
 
-  if(transform->position.y > 1000){
+  if(transform->position.y > 975){
     transform->position = Vector2{365.0f, 855.0f};
-    velocity.y = -std::abs(velocity.y);
+    m_speed = 350.0f;
+    float exit_angle = 3.14f/4.0f;
+    velocity.x = m_speed * std::sin(exit_angle);
+    velocity.y = -m_speed * std::cos(exit_angle);
     if(playerObject){
       auto *control = playerObject->GetComponent<PlayerControllerComponent>();
       control->LoseLife();
@@ -66,12 +69,12 @@ void BallComponent::OnCollisionEnter(GameObject *other) {
 
   if (otherTag == "Player") {
     // Se encuentra el centro de la pelota y el centro de la plataforma
-    float ballCenter = transform->position.x + ballBounds.w;
-    float playerCenter = other_transform->position.x + otherBounds.w;
+    float ballCenter = transform->position.x + (ballBounds.w /2);
+    float playerCenter = other_transform->position.x + (otherBounds.w /2);
         
     // Se calcula en qué punto golpeó relativo al centro
-    float hit = (ballCenter - playerCenter) / (other_transform->scale.x / 2.0f);
-        
+    float hit = (ballCenter - playerCenter) / (other_collider->size.x / 2.0f);
+    
     // Se mantiene entre -1 y 1
     hit = std::max(-1.0f, std::min(1.0f, hit));
 

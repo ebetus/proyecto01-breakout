@@ -51,4 +51,6 @@ void PlayerControllerComponent::LoseLife() {
     sceneManager->ChangeScene(std::move(std::make_unique<GameOverScene>(sceneManager , "GameOverScene")));
   }
   lifes--;
+  auto transform = owner->GetComponent<TransformComponent>();
+  transform->Translate(Vector2{305.0f , 875.0f} - transform->position); // Lo regresa a su lugar
 }
